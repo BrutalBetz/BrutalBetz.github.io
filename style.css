@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Neon Vault — Personal Video Archive</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Monoton&family=Orbitron:wght@400;600&family=Space+Grotesk:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="nav">
+        <div class="logo">
+          <span>Neon</span>
+          <span>Vault</span>
+        </div>
+        <div class="nav-links">
+          <a href="#videos">Videos</a>
+          <a href="#about">About</a>
+          <a href="#future">Future Finds</a>
+        </div>
+      </nav>
+      <div class="hero-content">
+        <p class="tagline">Personal Archive · Late-Night Rewinds · VHS Dreams</p>
+        <h1>Welcome to the Retro Reel</h1>
+        <p class="subtitle">
+          A neon-soaked corner of the web where friends + family can find every personal YouTube upload,
+          and anything else too cool not to share.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#videos">Enter the Vault</a>
+          <a class="btn ghost" href="#about">About the Archive</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="videos" class="section">
+        <div class="section-heading">
+          <h2>Video Vault</h2>
+          <p>
+            Replace the sample YouTube links below with your own. Each card is ready for a new upload,
+            playlist, or secret tape.
+          </p>
+        </div>
+        <div class="video-grid">
+          <article class="video-card">
+            <div class="video-frame">
+              <iframe
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                title="Sample Video"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <div class="video-info">
+              <h3>Family Road Trip 1986</h3>
+              <p>Sunset highways, neon diners, and the soundtrack of our summer.</p>
+            </div>
+          </article>
+
+          <article class="video-card">
+            <div class="video-frame">
+              <iframe
+                src="https://www.youtube.com/embed/oHg5SJYRHA0"
+                title="Sample Video"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <div class="video-info">
+              <h3>Backyard Premiere Night</h3>
+              <p>Popcorn, fog machine, and our best B-movie tribute yet.</p>
+            </div>
+          </article>
+
+          <article class="video-card">
+            <div class="video-frame">
+              <iframe
+                src="https://www.youtube.com/embed/9bZkp7q19f0"
+                title="Sample Video"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <div class="video-info">
+              <h3>Arcade Night Highlights</h3>
+              <p>Co-op chaos, neon glow, and a few extra lives.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="about" class="section about">
+        <div>
+          <h2>About the Archive</h2>
+          <p>
+            This site is a personal home base for every YouTube upload, nostalgic memory, and future
+            project. It is designed to feel like an 80s movie poster — bold, dramatic, and just a
+            little mysterious.
+          </p>
+          <div class="info-grid">
+            <div class="info-card">
+              <h4>Theme</h4>
+              <p>Neon noir + B-movie energy with glowing accents.</p>
+            </div>
+            <div class="info-card">
+              <h4>Access</h4>
+              <p>Shared with friends + family so no one misses a moment.</p>
+            </div>
+            <div class="info-card">
+              <h4>Format</h4>
+              <p>Simple HTML + CSS so it is easy to expand later.</p>
+            </div>
+          </div>
+        </div>
+        <div class="poster">
+          <div class="poster-frame">
+            <p class="poster-title">Tonight Only</p>
+            <p class="poster-main">The Neon Vault</p>
+            <p class="poster-sub">Starring: You</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="future" class="section future">
+        <div class="section-heading">
+          <h2>Future Finds</h2>
+          <p>Ideas for what else could live here when you are ready to add more.</p>
+        </div>
+        <div class="future-grid">
+          <div class="future-card">
+            <h3>Photo Drops</h3>
+            <p>Polaroids, behind-the-scenes shots, and family photo dumps.</p>
+          </div>
+          <div class="future-card">
+            <h3>Mixtape Blog</h3>
+            <p>Post retro playlists or favorite songs that fit the vibe.</p>
+          </div>
+          <div class="future-card">
+            <h3>Premiere Calendar</h3>
+            <p>Keep track of upcoming uploads and watch parties.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Built for the people I love · Neon Vault © 1987 · Updated whenever inspiration hits</p>
+    </footer>
+  </body>
+</html>
