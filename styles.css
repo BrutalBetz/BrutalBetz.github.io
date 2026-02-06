@@ -187,14 +187,57 @@ body > * {
 .video-frame {
   position: relative;
   padding-top: 56.25%;
-  background: #000;
+  background: #0d0d0f;
+  overflow: hidden;
 }
 
-.video-frame iframe {
+.video-frame iframe,
+.video-frame img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
+  object-fit: cover;
+}
+
+.video-thumb {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.video-thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.6));
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.play-badge {
+  position: absolute;
+  right: 1.2rem;
+  bottom: 1.2rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  letter-spacing: 0.22rem;
+  text-transform: uppercase;
+  font-family: "Archivo", sans-serif;
+  border: 1px solid rgba(245, 241, 233, 0.6);
+  color: var(--ink);
+  background: rgba(15, 15, 17, 0.75);
+  backdrop-filter: blur(6px);
+}
+
+.video-thumb:hover::after {
+  opacity: 0.55;
+}
+
+.video-thumb:hover .play-badge {
+  border-color: var(--gold);
+  color: var(--gold);
 }
 
 .video-info {
