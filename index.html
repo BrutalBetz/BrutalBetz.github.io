@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BrutalBetz — Personal Video Archive</title>
-    <link rel="stylesheet" href="styles.css?v=4" />
+    <link rel="stylesheet" href="styles.css?v=5" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -189,9 +189,8 @@
             <h3>Mixtape Blog</h3>
             <p>Post retro playlists or favorite songs that fit the vibe.</p>
           </div>
-          <div class="future-card">
-            <h3>Premiere Calendar</h3>
-            <p>Keep track of upcoming uploads and watch parties.</p>
+          <div class="future-card letterboxd-card" id="letterboxd-card">
+            <p class="lb-loading">Loading from Letterboxd…</p>
           </div>
         </div>
       </section>
@@ -200,5 +199,71 @@
     <footer class="footer">
       <p>Built for the people I love · Neon Vault © 1987 · Updated whenever inspiration hits</p>
     </footer>
+    <script>
+      (async function () {
+        const card = document.getElementById('letterboxd-card');
+        try {
+          const feed = 'https://letterboxd.com/BrutalBetz/rss/';
+          const proxy = 'https://api.allorigins.win/get?url=' + encodeURIComponent(feed);
+          const res = await fetch(proxy);
+          const json = await res.json();
+
+          const parser = new DOMParser();
+          const xml = parser.parseFromString(json.contents, 'text/xml');
+          const item = xml.querySelector('item');
+          if (!item) throw new Error('No items in feed');
+
+          const rawTitle = item.querySelector('title')?.textContent || '';
+          const link = item.getElementsByTagName('link')[0]?.textContent?.trim() || '#';
+          const rating = parseFloat(
+            item.getElementsByTagNameNS('*', 'memberRating')[0]?.textContent ||
+            item.getElementsByTagNameNS('*', 'rating')[0]?.textContent || '0'
+          );
+          const watchedDate = item.getElementsByTagNameNS('*', 'watchedDate')[0]?.textContent || '';
+          const description = item.querySelector('description')?.textContent || '';
+
+          // Extract poster from description HTML
+          const tmp = document.createElement('div');
+          tmp.innerHTML = description;
+          const posterSrc = tmp.querySelector('img')?.src || '';
+
+          // "The Substance, 2024 - ★★★½" → title + year
+          const cleanTitle = rawTitle.replace(/,\s*\d{4}.*$/, '').trim();
+          const year = rawTitle.match(/,\s*(\d{4})/)?.[1] || '';
+
+          // Star rating
+          function toStars(n) {
+            if (!n || isNaN(n)) return '';
+            return '★'.repeat(Math.floor(n)) + (n % 1 >= 0.5 ? '½' : '');
+          }
+
+          // Date
+          const dateStr = watchedDate
+            ? new Date(watchedDate + 'T12:00:00').toLocaleDateString('en-US', {
+                month: 'long', day: 'numeric', year: 'numeric'
+              })
+            : '';
+
+          card.innerHTML = `
+            <p class="lb-eyebrow">Last Watched</p>
+            <div class="lb-inner">
+              ${posterSrc ? `<a href="${link}" target="_blank" rel="noopener" aria-label="${cleanTitle} on Letterboxd">
+                <img class="lb-poster" src="${posterSrc}" alt="${cleanTitle} poster">
+              </a>` : ''}
+              <div class="lb-info">
+                <h3 class="lb-title">
+                  <a href="${link}" target="_blank" rel="noopener">${cleanTitle}</a>${year ? `&ensp;<span class="lb-year">${year}</span>` : ''}
+                </h3>
+                ${toStars(rating) ? `<p class="lb-rating">${toStars(rating)}</p>` : ''}
+                ${dateStr ? `<p class="lb-date">${dateStr}</p>` : ''}
+              </div>
+            </div>
+            <a class="lb-profile-link" href="https://letterboxd.com/BrutalBetz/" target="_blank" rel="noopener">View on Letterboxd →</a>
+          `;
+        } catch (e) {
+          card.innerHTML = '<p class="lb-loading">Could not load from Letterboxd right now.</p>';
+        }
+      })();
+    </script>
   </body>
 </html>
