@@ -171,7 +171,7 @@ body > * {
 
 .video-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
 }
 
@@ -249,60 +249,6 @@ body > * {
   margin-bottom: 0.6rem;
 }
 
-.about {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 3rem;
-  align-items: center;
-}
-
-.info-grid {
-  display: grid;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-.info-card {
-  background: rgba(18, 18, 20, 0.85);
-  padding: 1.2rem 1.4rem;
-  border-left: 3px solid var(--accent);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
-}
-
-.poster {
-  display: flex;
-  justify-content: center;
-}
-
-.poster-frame {
-  width: min(360px, 90%);
-  padding: 2.6rem;
-  border: 2px solid var(--accent);
-  text-align: center;
-  background: linear-gradient(160deg, rgba(230, 70, 47, 0.16), rgba(15, 15, 17, 0.8));
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
-}
-
-.poster-title {
-  text-transform: uppercase;
-  letter-spacing: 0.3rem;
-  font-size: 0.75rem;
-  color: var(--gold);
-}
-
-.poster-main {
-  font-family: "Libre Baskerville", serif;
-  font-size: 2.2rem;
-  margin: 1.2rem 0;
-  color: var(--ink);
-}
-
-.poster-sub {
-  font-family: "Archivo", sans-serif;
-  font-size: 0.8rem;
-  letter-spacing: 0.2rem;
-  text-transform: uppercase;
-}
 
 .future {
   background: linear-gradient(180deg, transparent, rgba(230, 70, 47, 0.08));
@@ -330,6 +276,12 @@ body > * {
   border-top: 1px solid var(--line);
 }
 
+@media (max-width: 900px) {
+  .video-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
   .nav {
     flex-direction: column;
@@ -339,5 +291,9 @@ body > * {
   .hero-actions {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .video-grid {
+    grid-template-columns: 1fr;
   }
 }
