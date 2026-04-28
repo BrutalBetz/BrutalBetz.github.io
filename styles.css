@@ -87,18 +87,18 @@ body {
 
 .bl {
   display: inline-block;
+  color: transparent;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.bl-1 { background: radial-gradient(ellipse 55% 45% at 32% 22%, rgba(255,255,255,0.92) 0%, transparent 55%), radial-gradient(ellipse 35% 35% at 72% 78%, rgba(100,0,0,0.3) 0%, transparent 55%), linear-gradient(140deg, #ff9090 0%, #ff3030 25%, #cc0a0a 55%, #800000 80%, #400000 100%); }
-.bl-2 { background: radial-gradient(ellipse 55% 45% at 32% 22%, rgba(255,255,255,0.92) 0%, transparent 55%), radial-gradient(ellipse 35% 35% at 72% 78%, rgba(100,30,0,0.3) 0%, transparent 55%), linear-gradient(140deg, #ffcc80 0%, #ff8800 25%, #cc5500 55%, #883300 80%, #441500 100%); }
-.bl-3 { background: radial-gradient(ellipse 55% 45% at 32% 22%, rgba(255,255,255,0.92) 0%, transparent 55%), radial-gradient(ellipse 35% 35% at 72% 78%, rgba(80,60,0,0.3) 0%, transparent 55%), linear-gradient(140deg, #ffee80 0%, #ffcc00 25%, #cc9900 55%, #886600 80%, #443300 100%); }
-.bl-4 { background: radial-gradient(ellipse 55% 45% at 32% 22%, rgba(255,255,255,0.92) 0%, transparent 55%), radial-gradient(ellipse 35% 35% at 72% 78%, rgba(0,60,0,0.3) 0%, transparent 55%), linear-gradient(140deg, #90ee90 0%, #22cc22 25%, #119911 55%, #006600 80%, #003300 100%); }
-.bl-5 { background: radial-gradient(ellipse 55% 45% at 32% 22%, rgba(255,255,255,0.92) 0%, transparent 55%), radial-gradient(ellipse 35% 35% at 72% 78%, rgba(0,0,80,0.3) 0%, transparent 55%), linear-gradient(140deg, #88bbff 0%, #2266ff 25%, #1144cc 55%, #002288 80%, #001144 100%); }
-.bl-6 { background: radial-gradient(ellipse 55% 45% at 32% 22%, rgba(255,255,255,0.92) 0%, transparent 55%), radial-gradient(ellipse 35% 35% at 72% 78%, rgba(50,0,80,0.3) 0%, transparent 55%), linear-gradient(140deg, #cc88ff 0%, #8822ee 25%, #6611bb 55%, #440088 80%, #220044 100%); }
-.bl-7 { background: radial-gradient(ellipse 55% 45% at 32% 22%, rgba(255,255,255,0.92) 0%, transparent 55%), radial-gradient(ellipse 35% 35% at 72% 78%, rgba(80,0,50,0.3) 0%, transparent 55%), linear-gradient(140deg, #ff88cc 0%, #ee2288 25%, #bb1166 55%, #880044 80%, #440022 100%); }
+.bl-1 { background-image: radial-gradient(ellipse 55% 45% at 32% 22%, rgba(255,255,255,0.92) 0%, transparent 55%), radial-gradient(ellipse 35% 35% at 72% 78%, rgba(100,0,0,0.3) 0%, transparent 55%), linear-gradient(140deg, #ff9090 0%, #ff3030 25%, #cc0a0a 55%, #800000 80%, #400000 100%); }
+.bl-2 { background-image: radial-gradient(ellipse 55% 45% at 32% 22%, rgba(255,255,255,0.92) 0%, transparent 55%), radial-gradient(ellipse 35% 35% at 72% 78%, rgba(100,30,0,0.3) 0%, transparent 55%), linear-gradient(140deg, #ffcc80 0%, #ff8800 25%, #cc5500 55%, #883300 80%, #441500 100%); }
+.bl-3 { background-image: radial-gradient(ellipse 55% 45% at 32% 22%, rgba(255,255,255,0.92) 0%, transparent 55%), radial-gradient(ellipse 35% 35% at 72% 78%, rgba(80,60,0,0.3) 0%, transparent 55%), linear-gradient(140deg, #ffee80 0%, #ffcc00 25%, #cc9900 55%, #886600 80%, #443300 100%); }
+.bl-4 { background-image: radial-gradient(ellipse 55% 45% at 32% 22%, rgba(255,255,255,0.92) 0%, transparent 55%), radial-gradient(ellipse 35% 35% at 72% 78%, rgba(0,60,0,0.3) 0%, transparent 55%), linear-gradient(140deg, #90ee90 0%, #22cc22 25%, #119911 55%, #006600 80%, #003300 100%); }
+.bl-5 { background-image: radial-gradient(ellipse 55% 45% at 32% 22%, rgba(255,255,255,0.92) 0%, transparent 55%), radial-gradient(ellipse 35% 35% at 72% 78%, rgba(0,0,80,0.3) 0%, transparent 55%), linear-gradient(140deg, #88bbff 0%, #2266ff 25%, #1144cc 55%, #002288 80%, #001144 100%); }
+.bl-6 { background-image: radial-gradient(ellipse 55% 45% at 32% 22%, rgba(255,255,255,0.92) 0%, transparent 55%), radial-gradient(ellipse 35% 35% at 72% 78%, rgba(50,0,80,0.3) 0%, transparent 55%), linear-gradient(140deg, #cc88ff 0%, #8822ee 25%, #6611bb 55%, #440088 80%, #220044 100%); }
+.bl-7 { background-image: radial-gradient(ellipse 55% 45% at 32% 22%, rgba(255,255,255,0.92) 0%, transparent 55%), radial-gradient(ellipse 35% 35% at 72% 78%, rgba(80,0,50,0.3) 0%, transparent 55%), linear-gradient(140deg, #ff88cc 0%, #ee2288 25%, #bb1166 55%, #880044 80%, #440022 100%); }
 
 .tagline {
   font-family: "Archivo", sans-serif;
