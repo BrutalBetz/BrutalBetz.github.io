@@ -200,46 +200,73 @@
     <script>
       (async function () {
         const card = document.getElementById('letterboxd-card');
-        try {
-          const feed = 'https://letterboxd.com/BrutalBetz/rss/';
-          const proxy = 'https://api.allorigins.win/get?url=' + encodeURIComponent(feed);
-          const res = await fetch(proxy);
-          const json = await res.json();
+        const feedUrl = 'https://letterboxd.com/BrutalBetz/rss/';
+        const enc = encodeURIComponent(feedUrl);
 
-          const parser = new DOMParser();
-          const xml = parser.parseFromString(json.contents, 'text/xml');
+        async function timedFetch(url) {
+          const ctrl = new AbortController();
+          const t = setTimeout(() => ctrl.abort(), 8000);
+          try {
+            const r = await fetch(url, { signal: ctrl.signal });
+            clearTimeout(t);
+            return r;
+          } catch (e) { clearTimeout(t); throw e; }
+        }
+
+        async function getRawXml() {
+          // Proxy 1: allorigins (returns JSON wrapper)
+          try {
+            const r = await timedFetch('https://api.allorigins.win/get?url=' + enc);
+            if (r.ok) { const j = await r.json(); if (j.contents) return j.contents; }
+          } catch (_) {}
+
+          // Proxy 2: corsproxy.io (returns raw)
+          try {
+            const r = await timedFetch('https://corsproxy.io/?' + enc);
+            if (r.ok) return await r.text();
+          } catch (_) {}
+
+          // Proxy 3: codetabs (returns raw)
+          try {
+            const r = await timedFetch('https://api.codetabs.com/v1/proxy?quest=' + enc);
+            if (r.ok) return await r.text();
+          } catch (_) {}
+
+          throw new Error('All proxies failed');
+        }
+
+        try {
+          const xmlText = await getRawXml();
+          const xml = new DOMParser().parseFromString(xmlText, 'text/xml');
           const item = xml.querySelector('item');
-          if (!item) throw new Error('No items in feed');
+          if (!item) throw new Error('No items');
 
           const rawTitle = item.querySelector('title')?.textContent || '';
-          const link = item.getElementsByTagName('link')[0]?.textContent?.trim() || '#';
+
+          // <link> sits between tags as a text node — grab it safely
+          const linkEl = item.getElementsByTagName('link')[0];
+          const link = (linkEl?.textContent || linkEl?.nextSibling?.nodeValue || '').trim() || 'https://letterboxd.com/BrutalBetz/';
+
           const rating = parseFloat(
             item.getElementsByTagNameNS('*', 'memberRating')[0]?.textContent ||
             item.getElementsByTagNameNS('*', 'rating')[0]?.textContent || '0'
           );
           const watchedDate = item.getElementsByTagNameNS('*', 'watchedDate')[0]?.textContent || '';
-          const description = item.querySelector('description')?.textContent || '';
 
-          // Extract poster from description HTML
           const tmp = document.createElement('div');
-          tmp.innerHTML = description;
+          tmp.innerHTML = item.querySelector('description')?.textContent || '';
           const posterSrc = tmp.querySelector('img')?.src || '';
 
-          // "The Substance, 2024 - ★★★½" → title + year
           const cleanTitle = rawTitle.replace(/,\s*\d{4}.*$/, '').trim();
           const year = rawTitle.match(/,\s*(\d{4})/)?.[1] || '';
 
-          // Star rating
           function toStars(n) {
             if (!n || isNaN(n)) return '';
             return '★'.repeat(Math.floor(n)) + (n % 1 >= 0.5 ? '½' : '');
           }
 
-          // Date
           const dateStr = watchedDate
-            ? new Date(watchedDate + 'T12:00:00').toLocaleDateString('en-US', {
-                month: 'long', day: 'numeric', year: 'numeric'
-              })
+            ? new Date(watchedDate + 'T12:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
             : '';
 
           card.innerHTML = `
