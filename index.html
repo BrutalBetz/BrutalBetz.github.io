@@ -179,9 +179,11 @@
           <p>Ideas for what else could live here when you are ready to add more.</p>
         </div>
         <div class="future-grid">
-          <div class="future-card">
-            <h3>Photo Drops</h3>
-            <p>Polaroids, behind-the-scenes shots, and family photo dumps.</p>
+          <div class="future-card josie-card">
+            <button class="josie-btn" id="josie-btn" aria-label="Josie's Button">
+              <span class="josie-icon">🦄</span>
+              <span class="josie-label">Josie's Button</span>
+            </button>
           </div>
           <div class="future-card">
             <h3>Mixtape Blog</h3>
@@ -197,6 +199,25 @@
     <footer class="footer">
       <p>Built for the people I love · Neon Vault © 1987 · Updated whenever inspiration hits</p>
     </footer>
+    <div class="unicorn-runner" id="unicorn-runner" aria-hidden="true">🦄</div>
+
+    <script>
+      (function () {
+        const btn = document.getElementById('josie-btn');
+        const runner = document.getElementById('unicorn-runner');
+        let running = false;
+        btn.addEventListener('click', function () {
+          if (running) return;
+          running = true;
+          runner.classList.add('active');
+          setTimeout(function () {
+            runner.classList.remove('active');
+            running = false;
+          }, 3000);
+        });
+      })();
+    </script>
+
     <script>
       (async function () {
         const card = document.getElementById('letterboxd-card');

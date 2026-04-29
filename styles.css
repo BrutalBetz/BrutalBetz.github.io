@@ -348,6 +348,79 @@ body {
   line-height: 1.55;
 }
 
+/* ── JOSIE'S BUTTON ─────────────────────────────── */
+
+.josie-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.josie-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1.2rem 1.6rem;
+  border-radius: 16px;
+  transition: transform 0.15s ease;
+  outline: none;
+}
+
+.josie-btn:hover  { transform: scale(1.08); }
+.josie-btn:active { transform: scale(0.93); }
+
+.josie-icon {
+  font-size: 2.8rem;
+  line-height: 1;
+  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.15));
+  display: block;
+}
+
+.josie-label {
+  font-family: "Libre Baskerville", serif;
+  font-size: 0.82rem;
+  color: var(--ink);
+  letter-spacing: 0.04rem;
+}
+
+/* ── UNICORN RUNNER ─────────────────────────────── */
+
+@keyframes unicorn-run {
+  0%   { left: -10%; transform: scaleX(-1) translateY(0px);   }
+  8%   {             transform: scaleX(-1) translateY(-18px);  }
+  16%  {             transform: scaleX(-1) translateY(0px);    }
+  24%  {             transform: scaleX(-1) translateY(-18px);  }
+  32%  {             transform: scaleX(-1) translateY(0px);    }
+  40%  {             transform: scaleX(-1) translateY(-18px);  }
+  48%  {             transform: scaleX(-1) translateY(0px);    }
+  56%  {             transform: scaleX(-1) translateY(-18px);  }
+  64%  {             transform: scaleX(-1) translateY(0px);    }
+  72%  {             transform: scaleX(-1) translateY(-18px);  }
+  80%  {             transform: scaleX(-1) translateY(0px);    }
+  88%  {             transform: scaleX(-1) translateY(-18px);  }
+  100% { left: 110%; transform: scaleX(-1) translateY(0px);   }
+}
+
+.unicorn-runner {
+  position: fixed;
+  bottom: 80px;
+  left: -10%;
+  font-size: 4rem;
+  line-height: 1;
+  z-index: 9999;
+  pointer-events: none;
+  display: none;
+}
+
+.unicorn-runner.active {
+  display: block;
+  animation: unicorn-run 2.8s linear forwards;
+}
+
 /* ── LETTERBOXD CARD ────────────────────────────── */
 
 .letterboxd-card {
