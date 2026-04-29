@@ -70,19 +70,25 @@ body {
 }
 
 .hero-content {
-  padding: 4rem 0 5rem;
-  max-width: 700px;
-  margin: 0 auto;
+  padding: 3rem 0 5rem;
   text-align: center;
 }
 
 .balloon-welcome {
   font-family: "Titan One", cursive;
-  font-size: clamp(4.5rem, 13vw, 10rem);
-  line-height: 1.05;
-  letter-spacing: 0.02em;
-  margin-bottom: 2rem;
-  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.1));
+  font-size: clamp(2.4rem, 8.5vw, 6rem);
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+  margin-bottom: 1.2rem;
+  white-space: nowrap;
+  filter:
+    drop-shadow(0 6px 18px rgba(0, 0, 0, 0.18))
+    drop-shadow(0 2px 4px rgba(0, 0, 0, 0.12));
+}
+
+@keyframes balloon-float {
+  0%, 100% { transform: translateY(var(--arch)); }
+  50%       { transform: translateY(calc(var(--arch) - 16px)); }
 }
 
 .bl {
@@ -90,15 +96,60 @@ body {
   color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
+  animation: balloon-float 3.2s ease-in-out infinite;
 }
 
-.bl-1 { background-image: radial-gradient(ellipse 55% 45% at 32% 22%, rgba(255,255,255,0.92) 0%, transparent 55%), radial-gradient(ellipse 35% 35% at 72% 78%, rgba(100,0,0,0.3) 0%, transparent 55%), linear-gradient(140deg, #ff9090 0%, #ff3030 25%, #cc0a0a 55%, #800000 80%, #400000 100%); }
-.bl-2 { background-image: radial-gradient(ellipse 55% 45% at 32% 22%, rgba(255,255,255,0.92) 0%, transparent 55%), radial-gradient(ellipse 35% 35% at 72% 78%, rgba(100,30,0,0.3) 0%, transparent 55%), linear-gradient(140deg, #ffcc80 0%, #ff8800 25%, #cc5500 55%, #883300 80%, #441500 100%); }
-.bl-3 { background-image: radial-gradient(ellipse 55% 45% at 32% 22%, rgba(255,255,255,0.92) 0%, transparent 55%), radial-gradient(ellipse 35% 35% at 72% 78%, rgba(80,60,0,0.3) 0%, transparent 55%), linear-gradient(140deg, #ffee80 0%, #ffcc00 25%, #cc9900 55%, #886600 80%, #443300 100%); }
-.bl-4 { background-image: radial-gradient(ellipse 55% 45% at 32% 22%, rgba(255,255,255,0.92) 0%, transparent 55%), radial-gradient(ellipse 35% 35% at 72% 78%, rgba(0,60,0,0.3) 0%, transparent 55%), linear-gradient(140deg, #90ee90 0%, #22cc22 25%, #119911 55%, #006600 80%, #003300 100%); }
-.bl-5 { background-image: radial-gradient(ellipse 55% 45% at 32% 22%, rgba(255,255,255,0.92) 0%, transparent 55%), radial-gradient(ellipse 35% 35% at 72% 78%, rgba(0,0,80,0.3) 0%, transparent 55%), linear-gradient(140deg, #88bbff 0%, #2266ff 25%, #1144cc 55%, #002288 80%, #001144 100%); }
-.bl-6 { background-image: radial-gradient(ellipse 55% 45% at 32% 22%, rgba(255,255,255,0.92) 0%, transparent 55%), radial-gradient(ellipse 35% 35% at 72% 78%, rgba(50,0,80,0.3) 0%, transparent 55%), linear-gradient(140deg, #cc88ff 0%, #8822ee 25%, #6611bb 55%, #440088 80%, #220044 100%); }
-.bl-7 { background-image: radial-gradient(ellipse 55% 45% at 32% 22%, rgba(255,255,255,0.92) 0%, transparent 55%), radial-gradient(ellipse 35% 35% at 72% 78%, rgba(80,0,50,0.3) 0%, transparent 55%), linear-gradient(140deg, #ff88cc 0%, #ee2288 25%, #bb1166 55%, #880044 80%, #440022 100%); }
+/* arch positions form an upward curve — center letter is highest */
+.bl-1 { --arch: 22px;  animation-delay: 0.00s; }
+.bl-2 { --arch: 8px;   animation-delay: 0.14s; }
+.bl-3 { --arch: -4px;  animation-delay: 0.28s; }
+.bl-4 { --arch: -14px; animation-delay: 0.42s; }
+.bl-5 { --arch: -4px;  animation-delay: 0.56s; }
+.bl-6 { --arch: 8px;   animation-delay: 0.70s; }
+.bl-7 { --arch: 22px;  animation-delay: 0.84s; }
+
+/* Metallic gradients: sharp white specular + deep shadow per letter */
+.bl-1 { background-image:
+  radial-gradient(ellipse 36% 30% at 26% 18%, rgba(255,255,255,1.0) 0%, rgba(255,180,180,0.5) 35%, transparent 60%),
+  radial-gradient(ellipse 16% 16% at 58% 44%, rgba(255,255,255,0.55) 0%, transparent 50%),
+  radial-gradient(ellipse 30% 26% at 80% 84%, rgba(80,0,0,0.7) 0%, transparent 58%),
+  linear-gradient(150deg, #ff7070 0%, #ee1212 28%, #b80000 56%, #6a0000 80%, #320000 100%); }
+
+.bl-2 { background-image:
+  radial-gradient(ellipse 36% 30% at 26% 18%, rgba(255,255,255,1.0) 0%, rgba(255,210,160,0.5) 35%, transparent 60%),
+  radial-gradient(ellipse 16% 16% at 58% 44%, rgba(255,255,255,0.55) 0%, transparent 50%),
+  radial-gradient(ellipse 30% 26% at 80% 84%, rgba(90,28,0,0.7) 0%, transparent 58%),
+  linear-gradient(150deg, #ffb84a 0%, #f07000 28%, #c05000 56%, #7a2e00 80%, #3a1200 100%); }
+
+.bl-3 { background-image:
+  radial-gradient(ellipse 36% 30% at 26% 18%, rgba(255,255,255,1.0) 0%, rgba(255,255,180,0.5) 35%, transparent 60%),
+  radial-gradient(ellipse 16% 16% at 58% 44%, rgba(255,255,255,0.55) 0%, transparent 50%),
+  radial-gradient(ellipse 30% 26% at 80% 84%, rgba(80,60,0,0.7) 0%, transparent 58%),
+  linear-gradient(150deg, #ffe040 0%, #f0c000 28%, #c09000 56%, #7a5a00 80%, #3a2800 100%); }
+
+.bl-4 { background-image:
+  radial-gradient(ellipse 36% 30% at 26% 18%, rgba(255,255,255,1.0) 0%, rgba(180,255,180,0.5) 35%, transparent 60%),
+  radial-gradient(ellipse 16% 16% at 58% 44%, rgba(255,255,255,0.55) 0%, transparent 50%),
+  radial-gradient(ellipse 30% 26% at 80% 84%, rgba(0,60,0,0.7) 0%, transparent 58%),
+  linear-gradient(150deg, #60e060 0%, #14b814 28%, #0a8a0a 56%, #005000 80%, #002400 100%); }
+
+.bl-5 { background-image:
+  radial-gradient(ellipse 36% 30% at 26% 18%, rgba(255,255,255,1.0) 0%, rgba(180,200,255,0.5) 35%, transparent 60%),
+  radial-gradient(ellipse 16% 16% at 58% 44%, rgba(255,255,255,0.55) 0%, transparent 50%),
+  radial-gradient(ellipse 30% 26% at 80% 84%, rgba(0,0,90,0.7) 0%, transparent 58%),
+  linear-gradient(150deg, #6098ff 0%, #1450ee 28%, #0a38c0 56%, #001e80 80%, #000e40 100%); }
+
+.bl-6 { background-image:
+  radial-gradient(ellipse 36% 30% at 26% 18%, rgba(255,255,255,1.0) 0%, rgba(220,180,255,0.5) 35%, transparent 60%),
+  radial-gradient(ellipse 16% 16% at 58% 44%, rgba(255,255,255,0.55) 0%, transparent 50%),
+  radial-gradient(ellipse 30% 26% at 80% 84%, rgba(50,0,90,0.7) 0%, transparent 58%),
+  linear-gradient(150deg, #c070ff 0%, #8010e8 28%, #6008b8 56%, #3c0080 80%, #1c0040 100%); }
+
+.bl-7 { background-image:
+  radial-gradient(ellipse 36% 30% at 26% 18%, rgba(255,255,255,1.0) 0%, rgba(255,180,230,0.5) 35%, transparent 60%),
+  radial-gradient(ellipse 16% 16% at 58% 44%, rgba(255,255,255,0.55) 0%, transparent 50%),
+  radial-gradient(ellipse 30% 26% at 80% 84%, rgba(90,0,50,0.7) 0%, transparent 58%),
+  linear-gradient(150deg, #ff70c0 0%, #e01080 28%, #b00860 56%, #700038 80%, #360018 100%); }
 
 .tagline {
   font-family: "Archivo", sans-serif;
