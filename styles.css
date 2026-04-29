@@ -387,6 +387,75 @@ body {
   letter-spacing: 0.04rem;
 }
 
+/* ── EMERY'S BUTTON ─────────────────────────────── */
+
+.emery-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.emery-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1.2rem 1.6rem;
+  border-radius: 16px;
+  transition: transform 0.15s ease;
+  outline: none;
+}
+
+.emery-btn:hover  { transform: scale(1.08); }
+.emery-btn:active { transform: scale(0.93); }
+
+.emery-icon {
+  font-size: 2.8rem;
+  line-height: 1;
+  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.15));
+  display: block;
+}
+
+.emery-label {
+  font-family: "Libre Baskerville", serif;
+  font-size: 0.82rem;
+  color: var(--ink);
+  letter-spacing: 0.04rem;
+}
+
+/* ── MONSTER TRUCK RUNNER ───────────────────────── */
+
+@keyframes truck-run {
+  0%   { left: -12%; transform: translateY(0px)   rotate(0deg);  }
+  12%  {             transform: translateY(-30px)  rotate(-4deg); }
+  24%  {             transform: translateY(0px)    rotate(2deg);  }
+  36%  {             transform: translateY(-30px)  rotate(-4deg); }
+  48%  {             transform: translateY(0px)    rotate(2deg);  }
+  60%  {             transform: translateY(-30px)  rotate(-4deg); }
+  72%  {             transform: translateY(0px)    rotate(2deg);  }
+  84%  {             transform: translateY(-30px)  rotate(-4deg); }
+  100% { left: 112%; transform: translateY(0px)    rotate(0deg);  }
+}
+
+.truck-runner {
+  position: fixed;
+  bottom: 72px;
+  left: -12%;
+  font-size: 5rem;
+  line-height: 1;
+  z-index: 9999;
+  pointer-events: none;
+  display: none;
+}
+
+.truck-runner.active {
+  display: block;
+  animation: truck-run 3s linear forwards;
+}
+
 /* ── UNICORN RUNNER ─────────────────────────────── */
 
 @keyframes unicorn-run {
