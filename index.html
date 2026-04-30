@@ -201,33 +201,24 @@
     <footer class="footer">
       <p>Built for the people I love · Neon Vault © 1987 · Updated whenever inspiration hits</p>
     </footer>
-    <div class="unicorn-runner" id="unicorn-runner" aria-hidden="true">🦄</div>
-    <div class="truck-runner" id="truck-runner" aria-hidden="true">🚛</div>
 
     <script>
-      (function () {
-        const btn = document.getElementById('josie-btn');
-        const runner = document.getElementById('unicorn-runner');
-        let running = false;
-        btn.addEventListener('click', function () {
-          if (running) return;
-          running = true;
-          runner.classList.add('active');
-          setTimeout(function () { runner.classList.remove('active'); running = false; }, 3000);
-        });
-      })();
+      function spawnRunner(emoji, cssClass, duration) {
+        const el = document.createElement('div');
+        el.textContent = emoji;
+        el.className = cssClass;
+        el.style.bottom = (55 + Math.random() * 90) + 'px';
+        document.body.appendChild(el);
+        setTimeout(function () { el.remove(); }, duration);
+      }
 
-      (function () {
-        const btn = document.getElementById('emery-btn');
-        const runner = document.getElementById('truck-runner');
-        let running = false;
-        btn.addEventListener('click', function () {
-          if (running) return;
-          running = true;
-          runner.classList.add('active');
-          setTimeout(function () { runner.classList.remove('active'); running = false; }, 3200);
-        });
-      })();
+      document.getElementById('josie-btn').addEventListener('click', function () {
+        spawnRunner('🦄', 'unicorn-runner', 3100);
+      });
+
+      document.getElementById('emery-btn').addEventListener('click', function () {
+        spawnRunner('🚛', 'truck-runner', 3300);
+      });
     </script>
 
     <script>

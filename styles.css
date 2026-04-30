@@ -429,15 +429,15 @@ body {
 /* ── MONSTER TRUCK RUNNER ───────────────────────── */
 
 @keyframes truck-run {
-  0%   { left: -12%; transform: translateY(0px)   rotate(0deg);  }
-  12%  {             transform: translateY(-30px)  rotate(-4deg); }
-  24%  {             transform: translateY(0px)    rotate(2deg);  }
-  36%  {             transform: translateY(-30px)  rotate(-4deg); }
-  48%  {             transform: translateY(0px)    rotate(2deg);  }
-  60%  {             transform: translateY(-30px)  rotate(-4deg); }
-  72%  {             transform: translateY(0px)    rotate(2deg);  }
-  84%  {             transform: translateY(-30px)  rotate(-4deg); }
-  100% { left: 112%; transform: translateY(0px)    rotate(0deg);  }
+  0%   { left: -12%; transform: scaleX(-1) translateY(0px)   rotate(0deg);  }
+  12%  {             transform: scaleX(-1) translateY(-30px)  rotate(4deg);  }
+  24%  {             transform: scaleX(-1) translateY(0px)    rotate(-2deg); }
+  36%  {             transform: scaleX(-1) translateY(-30px)  rotate(4deg);  }
+  48%  {             transform: scaleX(-1) translateY(0px)    rotate(-2deg); }
+  60%  {             transform: scaleX(-1) translateY(-30px)  rotate(4deg);  }
+  72%  {             transform: scaleX(-1) translateY(0px)    rotate(-2deg); }
+  84%  {             transform: scaleX(-1) translateY(-30px)  rotate(4deg);  }
+  100% { left: 112%; transform: scaleX(-1) translateY(0px)    rotate(0deg);  }
 }
 
 .truck-runner {
@@ -448,11 +448,6 @@ body {
   line-height: 1;
   z-index: 9999;
   pointer-events: none;
-  display: none;
-}
-
-.truck-runner.active {
-  display: block;
   animation: truck-run 3s linear forwards;
 }
 
@@ -482,11 +477,6 @@ body {
   line-height: 1;
   z-index: 9999;
   pointer-events: none;
-  display: none;
-}
-
-.unicorn-runner.active {
-  display: block;
   animation: unicorn-run 2.8s linear forwards;
 }
 
