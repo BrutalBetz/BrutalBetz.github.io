@@ -183,12 +183,14 @@
             <button class="josie-btn" id="josie-btn" aria-label="Josie's Button">
               <span class="josie-icon">🦄</span>
               <span class="josie-label">Josie's Button</span>
+              <span class="btn-counter" id="josie-count">0 times</span>
             </button>
           </div>
           <div class="future-card emery-card">
             <button class="emery-btn" id="emery-btn" aria-label="Emery's Button">
               <span class="emery-icon">🚛</span>
               <span class="emery-label">Emery's Button</span>
+              <span class="btn-counter" id="emery-count">0 times</span>
             </button>
           </div>
           <div class="future-card letterboxd-card" id="letterboxd-card">
@@ -212,12 +214,28 @@
         setTimeout(function () { el.remove(); }, duration);
       }
 
+      function formatCount(n) {
+        return n === 1 ? '1 time' : n + ' times';
+      }
+
+      // Load saved counts
+      var josieCount = parseInt(localStorage.getItem('josie-count') || '0', 10);
+      var emeryCount = parseInt(localStorage.getItem('emery-count') || '0', 10);
+      document.getElementById('josie-count').textContent = formatCount(josieCount);
+      document.getElementById('emery-count').textContent = formatCount(emeryCount);
+
       document.getElementById('josie-btn').addEventListener('click', function () {
         spawnRunner('🦄', 'unicorn-runner', 3100);
+        josieCount++;
+        localStorage.setItem('josie-count', josieCount);
+        document.getElementById('josie-count').textContent = formatCount(josieCount);
       });
 
       document.getElementById('emery-btn').addEventListener('click', function () {
         spawnRunner('🚛', 'truck-runner', 3300);
+        emeryCount++;
+        localStorage.setItem('emery-count', emeryCount);
+        document.getElementById('emery-count').textContent = formatCount(emeryCount);
       });
     </script>
 

@@ -387,6 +387,14 @@ body {
   letter-spacing: 0.04rem;
 }
 
+.btn-counter {
+  font-family: "Archivo", sans-serif;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14rem;
+  color: var(--muted);
+}
+
 /* ── EMERY'S BUTTON ─────────────────────────────── */
 
 .emery-card {
@@ -425,6 +433,7 @@ body {
   color: var(--ink);
   letter-spacing: 0.04rem;
 }
+
 
 /* ── MONSTER TRUCK RUNNER ───────────────────────── */
 
