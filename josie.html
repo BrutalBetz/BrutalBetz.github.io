@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>✨ JoSiE'S PaGe ✨ :: MySpace</title>
+  <style>
+    body {
+      background-color: #9900cc;
+      background-image:
+        repeating-linear-gradient(135deg, rgba(255,0,255,0.15) 0px, rgba(255,0,255,0.15) 2px, transparent 2px, transparent 30px),
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 2px, transparent 2px, transparent 30px);
+      font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+
+    a { color: #ffff00; font-weight: bold; text-decoration: underline; }
+    a:hover { color: #ffffff; }
+
+    .back-home {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      background: rgba(0,0,0,0.75);
+      color: #ffff00;
+      padding: 6px 12px;
+      text-decoration: none;
+      font-family: 'Comic Sans MS', cursive;
+      border: 2px solid #ffff00;
+      z-index: 9999;
+      font-size: 13px;
+    }
+
+    .page-wrap {
+      max-width: 810px;
+      margin: 0 auto;
+      padding: 8px 8px 40px;
+    }
+
+    marquee {
+      background: linear-gradient(90deg, #ff00ff, #cc00ff, #ff66cc, #cc00ff, #ff00ff);
+      color: #ffff00;
+      font-weight: bold;
+      font-size: 13px;
+      padding: 5px 0;
+      border-bottom: 2px solid #ffff00;
+    }
+
+    /* ── Rainbow name ── */
+    @keyframes rainbow-cycle {
+      0%   { color: #ff0000; text-shadow: 0 0 10px #ff000099; }
+      16%  { color: #ff8800; text-shadow: 0 0 10px #ff880099; }
+      32%  { color: #ffee00; text-shadow: 0 0 10px #ffee0099; }
+      48%  { color: #00ee00; text-shadow: 0 0 10px #00ee0099; }
+      64%  { color: #0088ff; text-shadow: 0 0 10px #0088ff99; }
+      80%  { color: #cc00ff; text-shadow: 0 0 10px #cc00ff99; }
+      100% { color: #ff0000; text-shadow: 0 0 10px #ff000099; }
+    }
+
+    .profile-header {
+      background: linear-gradient(180deg, #ff00ff, #cc00cc, #9900aa);
+      border: 4px solid #ffff00;
+      padding: 14px 10px 10px;
+      text-align: center;
+    }
+
+    .big-name {
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      font-weight: bold;
+      animation: rainbow-cycle 1.8s linear infinite;
+      letter-spacing: 4px;
+    }
+
+    .profile-quote {
+      font-size: 13px;
+      color: #ffccff;
+      font-style: italic;
+      margin-top: 6px;
+    }
+
+    /* ── Layout table ── */
+    .layout-table { width: 100%; border-collapse: collapse; margin-top: 6px; }
+    .layout-table td { vertical-align: top; padding: 4px; }
+    .left-col { width: 205px; }
+
+    /* ── Boxes ── */
+    .box {
+      background: rgba(0, 0, 0, 0.45);
+      border: 2px solid #ff66cc;
+      padding: 8px;
+      margin-bottom: 7px;
+      font-size: 13px;
+    }
+
+    .box-title {
+      background: linear-gradient(90deg, #ff00ff, #cc00cc);
+      color: #ffff00;
+      font-weight: bold;
+      font-size: 12px;
+      text-transform: uppercase;
+      padding: 3px 7px;
+      margin: -8px -8px 8px;
+      letter-spacing: 1px;
+    }
+
+    /* ── Profile pic ── */
+    .profile-pic {
+      width: 160px;
+      height: 160px;
+      background: linear-gradient(135deg, #ff99ff, #ff00ff, #cc00ff);
+      border: 5px solid #ffff00;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      margin: 6px auto;
+    }
+
+    .stat-label { color: #ffff00; font-weight: bold; font-size: 12px; }
+    .stat-val   { color: #ffccff; font-size: 12px; }
+    .big-stat   { font-size: 1.6rem; color: #ff00ff; font-weight: bold; }
+
+    /* ── Buttons ── */
+    .ms-btn {
+      display: block;
+      width: 100%;
+      background: linear-gradient(180deg, #ff99cc, #ff00cc);
+      border: 2px solid #ffff00;
+      color: #ffffff;
+      font-family: 'Comic Sans MS', cursive;
+      font-weight: bold;
+      font-size: 12px;
+      padding: 5px;
+      cursor: pointer;
+      margin-bottom: 4px;
+      text-align: center;
+    }
+    .ms-btn:hover { background: linear-gradient(180deg, #ffccee, #ff66cc); }
+
+    /* ── Music player ── */
+    .music-box {
+      background: #110022;
+      border: 2px solid #ff00ff;
+      padding: 8px;
+      text-align: center;
+      font-size: 12px;
+      margin-bottom: 7px;
+    }
+    .music-title { color: #ff66cc; font-weight: bold; }
+    .music-bar   { color: #ff00ff; letter-spacing: 2px; font-size: 16px; margin: 4px 0; }
+
+    /* ── Dividers ── */
+    .star-div {
+      text-align: center;
+      font-size: 15px;
+      letter-spacing: 6px;
+      margin: 6px 0;
+      color: #ffff00;
+    }
+
+    /* ── Comments ── */
+    .comment {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid #ff66cc;
+      padding: 6px 8px;
+      margin-bottom: 6px;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .comment-from { color: #ffff00; font-weight: bold; }
+
+    /* ── Top friends ── */
+    .friend-cell { text-align: center; font-size: 12px; padding: 6px 4px; }
+    .friend-icon { font-size: 2.8rem; display: block; }
+
+    /* ── Floating sparkles ── */
+    @keyframes float-up {
+      0%   { transform: translateY(0)   rotate(0deg);   opacity: 1; }
+      100% { transform: translateY(-110vh) rotate(540deg); opacity: 0; }
+    }
+    .sp {
+      position: fixed;
+      pointer-events: none;
+      z-index: 8888;
+      animation: float-up linear forwards;
+    }
+
+    /* ── Cursor trail ── */
+    .trail {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9998;
+      font-size: 1rem;
+      transition: opacity 0.6s, transform 0.6s;
+    }
+
+    .footer-txt {
+      text-align: center;
+      font-size: 11px;
+      color: #cc88ff;
+      padding: 14px 0;
+      line-height: 2;
+    }
+
+    @keyframes blink { 50% { opacity: 0; } }
+    .blink { animation: blink 0.9s step-start infinite; }
+  </style>
+</head>
+<body>
+
+  <a class="back-home" href="index.html">← Home</a>
+
+  <marquee scrollamount="4">✨🦄 welcome 2 josie's page!! u r visitor #1,337 !! leave me a comment!! 🌈🦄✨ i LuV uNiCoRnS aNd RaInBoWs!! 🌈🦄✨ add me as ur friend!! 🦄✨🌈</marquee>
+
+  <div class="page-wrap">
+
+    <!-- Header -->
+    <div class="profile-header">
+      <div class="big-name">✨ JoSiE ✨</div>
+      <div class="profile-quote">"if u believe in magic, anything is possible!! 🦄🌈"</div>
+    </div>
+
+    <!-- Main layout -->
+    <table class="layout-table">
+      <tr>
+        <!-- LEFT COLUMN -->
+        <td class="left-col">
+
+          <div class="profile-pic">🦄</div>
+
+          <div class="box" style="text-align:center;">
+            <div class="box-title">🦄 JoSiE 🦄</div>
+            <span class="stat-label">Age:</span> <span class="stat-val">6 🎀</span><br>
+            <span class="stat-label">Status:</span> <span class="stat-val">Magical ✨</span><br>
+            <span class="stat-label">Location:</span> <span class="stat-val">Rainbow Land 🌈</span><br>
+            <br>
+            <span class="stat-label">Last Login:</span><br>
+            <span class="stat-val" style="font-size:11px;">just now!! :)</span><br>
+            <br>
+            <span class="stat-label">Profile Views:</span><br>
+            <span class="big-stat">1,337</span>
+          </div>
+
+          <button class="ms-btn">💌 Add to Friends</button>
+          <button class="ms-btn">💬 Send Message</button>
+          <button class="ms-btn">🌈 Add to Faves</button>
+
+          <div class="box" style="text-align:center; margin-top:7px;">
+            <div class="box-title">✨ Mood ✨</div>
+            <span class="blink" style="color:#ffff00; font-size:15px;">✨ MAGICAL ✨</span><br>
+            <span style="color:#ffccff; font-size:11px;">(always!)</span>
+          </div>
+
+          <div class="music-box">
+            <div class="music-title">🎵 Now Playing:</div>
+            <div style="color:#ffccff; font-size:11px; margin:3px 0;">"Rainbow Connection"</div>
+            <div class="music-bar">▶ ■ ◀▶</div>
+            <div style="color:#ff66cc; font-size:11px;">🎶🎶🎶🎶🎶🎶🎶</div>
+          </div>
+
+        </td>
+
+        <!-- RIGHT COLUMN -->
+        <td>
+
+          <div class="box">
+            <div class="box-title">✨ About Me ✨</div>
+            <div style="line-height:1.8;">
+              <b style="color:#ffff00;">HII!!!!1!!</b> my name is Josie and i am <b>6 years old</b>!! 🎀<br><br>
+              i <span class="blink" style="color:#ff66cc;">LUUUUV</span> unicorns 🦄🦄🦄 and rainbows 🌈 and sparkles ✨ and my lil sister emery (sometimes lol 😂)<br><br>
+              my favorite color is <b style="color:#ff66cc;">PINK</b> and also <b style="color:#cc00ff;">PURPLE</b> and also <b>ALL THE COLORS OF THE RAINBOW!!</b> 🌈<br><br>
+              i like 2:<br>
+              ⭐ ride my bike fast<br>
+              ⭐ watch movies w daddy<br>
+              ⭐ pet EVERY dog i see 🐶<br>
+              ⭐ eat mac n cheese<br>
+              ⭐ believe in unicorns 4ever<br><br>
+              <b style="color:#ffff00;">if ur reading this ur officially my fren!! 🦄💖</b>
+            </div>
+          </div>
+
+          <div class="star-div">★彡 🌈 ✨ 🦄 ✨ 🌈 彡★</div>
+
+          <div class="box">
+            <div class="box-title">🌈 Who I'd Like to Meet 🌈</div>
+            <div style="line-height:1.8;">
+              A REAL UNICORN!!!!!! 🦄🦄🦄🦄<br>
+              also taylor swift 🎤<br>
+              and anyone who likes rainbows 🌈<br>
+              and my GG 💛 (hi GG!!)<br>
+              and EVERY dog in the world 🐶
+            </div>
+          </div>
+
+          <div class="box">
+            <div class="box-title">⭐ Josie's Interests ⭐</div>
+            <table style="width:100%; font-size:12px;">
+              <tr>
+                <td style="width:50%; vertical-align:top; padding-right:6px;">
+                  <b style="color:#ffff00;">General:</b><br>
+                  🦄 Unicorns (obv)<br>
+                  🌈 Rainbows<br>
+                  ✨ All things sparkly<br>
+                  🐶 Dogs (all of them)<br>
+                  🎨 Drawing & art<br>
+                  🚲 Riding my bike<br>
+                </td>
+                <td style="width:50%; vertical-align:top;">
+                  <b style="color:#ffff00;">Movies / TV:</b><br>
+                  🎠 My Little Pony<br>
+                  👸 Frozen 1 & 2<br>
+                  🦁 The Lion King<br>
+                  🧚 Tinker Bell<br>
+                  🌊 Moana<br>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+        </td>
+      </tr>
+    </table>
+
+    <div class="star-div">🌈 ✨ 🦄 ✨ 🌈 ✨ 🦄 ✨ 🌈 ✨ 🦄 ✨ 🌈</div>
+
+    <!-- Top Friends -->
+    <div class="box">
+      <div class="box-title">💖 Josie's Top Friends 💖</div>
+      <table style="width:100%;">
+        <tr>
+          <td class="friend-cell"><span class="friend-icon">👨</span><b style="color:#ffff00;">Daddy</b><br><span style="color:#ffccff; font-size:11px;">Best Friend</span></td>
+          <td class="friend-cell"><span class="friend-icon">🚛</span><b style="color:#ffff00;">Emery</b><br><span style="color:#ffccff; font-size:11px;">Lil Sis 💕</span></td>
+          <td class="friend-cell"><span class="friend-icon">👵</span><b style="color:#ffff00;">GG</b><br><span style="color:#ffccff; font-size:11px;">My GG!!</span></td>
+          <td class="friend-cell"><span class="friend-icon">🐶</span><b style="color:#ffff00;">Every Dog</b><br><span style="color:#ffccff; font-size:11px;">All of them</span></td>
+          <td class="friend-cell"><span class="friend-icon">🦄</span><b style="color:#ffff00;">Unicorns</b><br><span style="color:#ffccff; font-size:11px;">obv!!</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Comments -->
+    <div class="box">
+      <div class="box-title">💬 Comments (1,337)</div>
+      <div class="comment">
+        <span class="comment-from">🌈 RainbowGrl99:</span>
+        <span style="color:#ffccff;"> OMG ur page is sooooo kewl!! i luv ur layout!! plz add me!!! 🌈✨</span>
+      </div>
+      <div class="comment">
+        <span class="comment-from">✨ GlitterQueen:</span>
+        <span style="color:#ffccff;"> josie ur page makes me smile every time!! keep believing in unicorns 4ever!! 🦄💖</span>
+      </div>
+      <div class="comment">
+        <span class="comment-from">🦄 UnicornLuvr2006:</span>
+        <span style="color:#ffccff;"> heyyyy!! ur my new bff!! ur page is amazingg!!1!! luv the sparkles omg</span>
+      </div>
+      <div style="text-align:right; margin-top:5px; font-size:11px;">
+        <a href="#">View All 1,337 Comments →</a>
+      </div>
+    </div>
+
+    <div class="footer-txt">
+      ✨ JoSiE'S PaGe ✨ · best viewed in internet explorer 6 · 800x600<br>
+      <span class="blink">🦄 pLeAsE dOnT sTeAl My LaYoUt!! 🦄</span><br>
+      made w/ 💖 and lots of glitter
+    </div>
+
+  </div><!-- /page-wrap -->
+
+  <script>
+    // Floating sparkles from bottom
+    const sparkles = ['✨','⭐','🌟','💫','🌈','🦄','💖','🌸'];
+    function spawnSparkle() {
+      const s = document.createElement('span');
+      s.className = 'sp';
+      s.textContent = sparkles[Math.floor(Math.random() * sparkles.length)];
+      const dur = 5 + Math.random() * 7;
+      s.style.cssText = `left:${Math.random()*100}%; bottom:-60px; font-size:${0.9+Math.random()*1.2}rem; animation-duration:${dur}s;`;
+      document.body.appendChild(s);
+      setTimeout(() => s.remove(), dur * 1000);
+    }
+    setInterval(spawnSparkle, 500);
+
+    // Cursor sparkle trail
+    const trailEmoji = ['✨','💫','⭐','🌟','🌸'];
+    document.addEventListener('mousemove', function(e) {
+      if (Math.random() > 0.65) {
+        const t = document.createElement('span');
+        t.className = 'trail';
+        t.textContent = trailEmoji[Math.floor(Math.random() * trailEmoji.length)];
+        t.style.left = e.clientX + 'px';
+        t.style.top  = e.clientY + 'px';
+        document.body.appendChild(t);
+        requestAnimationFrame(() => {
+          t.style.transform = 'translateY(-28px)';
+          t.style.opacity   = '0';
+        });
+        setTimeout(() => t.remove(), 650);
+      }
+    });
+  </script>
+</body>
+</html>

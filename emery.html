@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EMERY'S PAGE 🚛 ENTER IF U DARE</title>
+  <style>
+    body {
+      background-color: #0a0a0a;
+      background-image:
+        repeating-linear-gradient(90deg, rgba(255,80,0,0.06) 0px, rgba(255,80,0,0.06) 1px, transparent 1px, transparent 40px),
+        repeating-linear-gradient(0deg,  rgba(255,80,0,0.06) 0px, rgba(255,80,0,0.06) 1px, transparent 1px, transparent 40px);
+      font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+
+    a { color: #ff8800; font-weight: bold; text-decoration: underline; }
+    a:hover { color: #ffdd00; }
+
+    .back-home {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      background: rgba(0,0,0,0.85);
+      color: #ff8800;
+      padding: 6px 12px;
+      text-decoration: none;
+      font-family: 'Comic Sans MS', cursive;
+      border: 2px solid #ff8800;
+      z-index: 9999;
+      font-size: 13px;
+    }
+
+    .page-wrap {
+      max-width: 810px;
+      margin: 0 auto;
+      padding: 8px 8px 40px;
+    }
+
+    marquee {
+      background: linear-gradient(90deg, #cc2200, #ff4400, #ff8800, #ff4400, #cc2200);
+      color: #ffdd00;
+      font-weight: bold;
+      font-size: 13px;
+      padding: 5px 0;
+      border-bottom: 3px solid #ff4400;
+    }
+
+    /* ── Fire name animation ── */
+    @keyframes fire-flicker {
+      0%,100% { color: #ff4400; text-shadow: 0 0 8px #ff440099, 0 0 24px #ff000066; }
+      25%      { color: #ff8800; text-shadow: 0 0 8px #ff880099, 0 0 24px #ff440066; }
+      50%      { color: #ffdd00; text-shadow: 0 0 8px #ffdd0099, 0 0 24px #ff880066; }
+      75%      { color: #ff4400; text-shadow: 0 0 8px #ff440099, 0 0 24px #ff000066; }
+    }
+
+    .profile-header {
+      background: linear-gradient(180deg, #1a0000, #330800, #0a0a0a);
+      border: 4px solid #ff4400;
+      padding: 14px 10px 10px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .big-name {
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      font-weight: bold;
+      font-family: Impact, 'Arial Black', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 6px;
+      animation: fire-flicker 1.2s ease-in-out infinite;
+    }
+
+    .profile-quote {
+      font-size: 13px;
+      color: #ff8844;
+      font-style: italic;
+      margin-top: 6px;
+    }
+
+    /* ── Layout ── */
+    .layout-table { width: 100%; border-collapse: collapse; margin-top: 6px; }
+    .layout-table td { vertical-align: top; padding: 4px; }
+    .left-col { width: 205px; }
+
+    /* ── Boxes ── */
+    .box {
+      background: rgba(20, 5, 0, 0.80);
+      border: 2px solid #ff4400;
+      padding: 8px;
+      margin-bottom: 7px;
+      font-size: 13px;
+    }
+
+    .box-title {
+      background: linear-gradient(90deg, #cc2200, #ff4400);
+      color: #ffdd00;
+      font-weight: bold;
+      font-family: Impact, 'Arial Black', sans-serif;
+      font-size: 13px;
+      text-transform: uppercase;
+      padding: 3px 7px;
+      margin: -8px -8px 8px;
+      letter-spacing: 2px;
+    }
+
+    /* ── Profile pic ── */
+    .profile-pic {
+      width: 160px;
+      height: 160px;
+      background: linear-gradient(135deg, #330000, #660000, #220000);
+      border: 5px solid #ff4400;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      margin: 6px auto;
+      box-shadow: 0 0 20px #ff440066;
+    }
+
+    .stat-label { color: #ff8800; font-weight: bold; font-size: 12px; }
+    .stat-val   { color: #ffccaa; font-size: 12px; }
+    .big-stat   { font-size: 1.6rem; color: #ff4400; font-weight: bold; font-family: Impact, sans-serif; }
+
+    /* ── Buttons ── */
+    .ms-btn {
+      display: block;
+      width: 100%;
+      background: linear-gradient(180deg, #cc2200, #880000);
+      border: 2px solid #ff4400;
+      color: #ffdd00;
+      font-family: Impact, 'Arial Black', sans-serif;
+      font-size: 13px;
+      letter-spacing: 1px;
+      padding: 6px;
+      cursor: pointer;
+      margin-bottom: 4px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .ms-btn:hover { background: linear-gradient(180deg, #ff4400, #cc2200); color: #fff; }
+
+    /* ── Music player ── */
+    .music-box {
+      background: #0d0000;
+      border: 2px solid #ff4400;
+      padding: 8px;
+      text-align: center;
+      font-size: 12px;
+      margin-bottom: 7px;
+      box-shadow: inset 0 0 10px #ff220022;
+    }
+    .music-title { color: #ff8800; font-weight: bold; font-family: Impact, sans-serif; letter-spacing: 1px; }
+    .music-bar   { color: #ff4400; letter-spacing: 3px; font-size: 16px; margin: 4px 0; }
+
+    /* ── Dividers ── */
+    .flame-div {
+      text-align: center;
+      font-size: 18px;
+      letter-spacing: 4px;
+      margin: 6px 0;
+      color: #ff4400;
+    }
+
+    /* ── Comments ── */
+    .comment {
+      background: rgba(255,68,0,0.08);
+      border: 1px solid #cc2200;
+      padding: 6px 8px;
+      margin-bottom: 6px;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .comment-from { color: #ffdd00; font-weight: bold; }
+
+    /* ── Top friends ── */
+    .friend-cell { text-align: center; font-size: 12px; padding: 6px 4px; }
+    .friend-icon { font-size: 2.8rem; display: block; }
+
+    /* ── Floating fire ── */
+    @keyframes fire-rise {
+      0%   { transform: translateY(0) rotate(-5deg) scale(1);  opacity: 1; }
+      50%  { transform: translateY(-50vh) rotate(5deg) scale(1.2); opacity: 0.7; }
+      100% { transform: translateY(-110vh) rotate(-3deg) scale(0.8); opacity: 0; }
+    }
+    .fire-particle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 8888;
+      animation: fire-rise linear forwards;
+    }
+
+    /* ── Shake on hover ── */
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      20%      { transform: translateX(-4px); }
+      40%      { transform: translateX(4px); }
+      60%      { transform: translateX(-3px); }
+      80%      { transform: translateX(3px); }
+    }
+    .ms-btn:active { animation: shake 0.3s ease; }
+
+    .footer-txt {
+      text-align: center;
+      font-size: 11px;
+      color: #884422;
+      padding: 14px 0;
+      line-height: 2;
+    }
+
+    @keyframes blink { 50% { opacity: 0; } }
+    .blink { animation: blink 0.7s step-start infinite; }
+
+    /* impact headers */
+    .impact { font-family: Impact, 'Arial Black', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
+  </style>
+</head>
+<body>
+
+  <a class="back-home" href="index.html">← Home</a>
+
+  <marquee scrollamount="5">🔥🚛 WELCOME 2 EMERY'S PAGE!! BUCKLE UP!! 🚛🔥 MONSTER TRUCKS R THE BEST!! 🏆 LEAVE A COMMENT IF U CAN HANDLE IT!! 💥🚛🔥 VROOM VROOM!! 🔥🚛💥</marquee>
+
+  <div class="page-wrap">
+
+    <!-- Header -->
+    <div class="profile-header">
+      <div class="big-name">💥 EMERY 💥</div>
+      <div class="profile-quote">"if it ain't got big wheels, i don't care about it 🚛🔥"</div>
+    </div>
+
+    <!-- Main layout -->
+    <table class="layout-table">
+      <tr>
+        <!-- LEFT COLUMN -->
+        <td class="left-col">
+
+          <div class="profile-pic">🚛</div>
+
+          <div class="box" style="text-align:center;">
+            <div class="box-title">🚛 EMERY 🚛</div>
+            <span class="stat-label">Age:</span> <span class="stat-val">3 💪</span><br>
+            <span class="stat-label">Status:</span> <span class="stat-val">PUMPED 🔥</span><br>
+            <span class="stat-label">Location:</span> <span class="stat-val">Monster Jam Arena 🏟️</span><br>
+            <br>
+            <span class="stat-label">Last Login:</span><br>
+            <span class="stat-val" style="font-size:11px;">just now (was doing donuts)</span><br>
+            <br>
+            <span class="stat-label">Profile Views:</span><br>
+            <span class="big-stat">99,999</span>
+          </div>
+
+          <button class="ms-btn">💥 Add to Friends</button>
+          <button class="ms-btn">📢 Send Message</button>
+          <button class="ms-btn">🔥 Add to Faves</button>
+
+          <div class="box" style="text-align:center; margin-top:7px;">
+            <div class="box-title">🔥 Mood 🔥</div>
+            <span class="blink impact" style="color:#ff4400; font-size:16px;">💥 AMPED UP 💥</span><br>
+            <span style="color:#ff8844; font-size:11px;">(always ready 2 go)</span>
+          </div>
+
+          <div class="music-box">
+            <div class="music-title">🎵 NOW PLAYING:</div>
+            <div style="color:#ff8844; font-size:11px; margin:3px 0;">"Monster Truck Jam"</div>
+            <div class="music-bar">▶ ■ ◀▶</div>
+            <div style="color:#ff4400; font-size:13px;">🔊🔊🔊🔊🔊</div>
+          </div>
+
+        </td>
+
+        <!-- RIGHT COLUMN -->
+        <td>
+
+          <div class="box">
+            <div class="box-title">💥 About Me 💥</div>
+            <div style="line-height:1.8;">
+              <b style="color:#ffdd00;" class="impact">YO WHAT IS UP!!!</b> my name is Emery and i am <b>3 years old</b>!! 💪<br><br>
+              i <span class="blink" style="color:#ff4400;">LOVE</span> monster trucks 🚛🚛🚛 and dirt 🪨 and going FAST 💨 and my big sister Josie (she thinks unicorns r real lol)<br><br>
+              my favorite truck is <b style="color:#ff8800;">GRAVE DIGGER</b> 🏆 obviously<br><br>
+              i like 2:<br>
+              🔥 watch monster trucks crush cars<br>
+              🔥 go VROOM w/ my toy trucks<br>
+              🔥 get muddy outside<br>
+              🔥 eat chicken nuggets<br>
+              🔥 go FAST on everything<br>
+              🔥 make loud noises<br><br>
+              <b style="color:#ffdd00;" class="impact">if ur not about trucks, this page is NOT 4 u!!</b>
+            </div>
+          </div>
+
+          <div class="flame-div">🔥 💥 🚛 💥 🔥 💥 🚛 💥 🔥</div>
+
+          <div class="box">
+            <div class="box-title">🏆 Who I'd Like to Meet 🏆</div>
+            <div style="line-height:1.8;">
+              THE GRAVE DIGGER DRIVER!! 🚛🏆<br>
+              any monster truck driver ever<br>
+              anyone w/ a big truck 💪<br>
+              my GG 💛 (hi GG!!)<br>
+              people who think trucks > unicorns 😤
+            </div>
+          </div>
+
+          <div class="box">
+            <div class="box-title">🔥 Emery's Interests 🔥</div>
+            <table style="width:100%; font-size:12px;">
+              <tr>
+                <td style="width:50%; vertical-align:top; padding-right:6px;">
+                  <b style="color:#ffdd00;">General:</b><br>
+                  🚛 Monster Trucks (obv)<br>
+                  💥 Big explosions<br>
+                  🪨 Dirt & mud<br>
+                  🏎️ Going fast<br>
+                  🔊 LOUD sounds<br>
+                  🐔 Chicken nuggets<br>
+                </td>
+                <td style="width:50%; vertical-align:top;">
+                  <b style="color:#ffdd00;">Shows / Movies:</b><br>
+                  🚛 Monster Jam<br>
+                  🚜 Blaze & the Monster Machines<br>
+                  🦖 Dinosaurs (also big)<br>
+                  🤠 Anything w/ trucks<br>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+        </td>
+      </tr>
+    </table>
+
+    <div class="flame-div">🔥 💥 🚛 💥 🔥 💥 🚛 💥 🔥 💥 🚛 💥 🔥</div>
+
+    <!-- Top Friends -->
+    <div class="box">
+      <div class="box-title">🏆 Emery's Top Friends 🏆</div>
+      <table style="width:100%;">
+        <tr>
+          <td class="friend-cell"><span class="friend-icon">👨</span><b style="color:#ffdd00;">Daddy</b><br><span style="color:#ff8844; font-size:11px;">Best Friend</span></td>
+          <td class="friend-cell"><span class="friend-icon">🦄</span><b style="color:#ffdd00;">Josie</b><br><span style="color:#ff8844; font-size:11px;">Big Sis 💕</span></td>
+          <td class="friend-cell"><span class="friend-icon">👵</span><b style="color:#ffdd00;">GG</b><br><span style="color:#ff8844; font-size:11px;">My GG!!</span></td>
+          <td class="friend-cell"><span class="friend-icon">🚛</span><b style="color:#ffdd00;">Grave Digger</b><br><span style="color:#ff8844; font-size:11px;">LEGEND 🏆</span></td>
+          <td class="friend-cell"><span class="friend-icon">💥</span><b style="color:#ffdd00;">Explosions</b><br><span style="color:#ff8844; font-size:11px;">ALWAYS</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Comments -->
+    <div class="box">
+      <div class="box-title">💬 Comments (99,999)</div>
+      <div class="comment">
+        <span class="comment-from">🚛 TruckBro2004:</span>
+        <span style="color:#ffccaa;"> dude ur page is SO SICK!! grave digger is the best ur right!! leave me a comment back!!</span>
+      </div>
+      <div class="comment">
+        <span class="comment-from">💥 MonsterJamFan:</span>
+        <span style="color:#ffccaa;"> VROOM VROOM!! ur the coolest 3 year old on myspace no cap 🔥🚛</span>
+      </div>
+      <div class="comment">
+        <span class="comment-from">🔥 DirtTrack99:</span>
+        <span style="color:#ffccaa;"> bro ur page made my speakers blow up (in a good way). add me back!!</span>
+      </div>
+      <div style="text-align:right; margin-top:5px; font-size:11px;">
+        <a href="#">View All 99,999 Comments →</a>
+      </div>
+    </div>
+
+    <div class="footer-txt">
+      💥 EMERY'S PAGE 💥 · best viewed w/ the volume ALL THE WAY UP · 800x600<br>
+      <span class="blink impact" style="color:#ff4400;">🚛 DO NOT STEAL MY LAYOUT OR THE TRUCKS WILL FIND U 🚛</span><br>
+      made w/ 🔥 and motor oil
+    </div>
+
+  </div><!-- /page-wrap -->
+
+  <script>
+    // Floating fire particles from bottom
+    const fireEmoji = ['🔥','💥','🚛','⚡','💨'];
+    function spawnFire() {
+      const f = document.createElement('span');
+      f.className = 'fire-particle';
+      f.textContent = fireEmoji[Math.floor(Math.random() * fireEmoji.length)];
+      const dur = 4 + Math.random() * 5;
+      f.style.cssText = `left:${Math.random()*100}%; bottom:-60px; font-size:${1+Math.random()*1.4}rem; animation-duration:${dur}s;`;
+      document.body.appendChild(f);
+      setTimeout(() => f.remove(), dur * 1000);
+    }
+    setInterval(spawnFire, 450);
+
+    // Fire cursor trail
+    const trailEmoji = ['🔥','💥','⚡','💨'];
+    document.addEventListener('mousemove', function(e) {
+      if (Math.random() > 0.68) {
+        const t = document.createElement('span');
+        t.style.cssText = `position:fixed; left:${e.clientX}px; top:${e.clientY}px; pointer-events:none; z-index:9998; font-size:1.1rem; transition:transform 0.5s, opacity 0.5s;`;
+        t.textContent = trailEmoji[Math.floor(Math.random() * trailEmoji.length)];
+        document.body.appendChild(t);
+        requestAnimationFrame(() => {
+          t.style.transform = 'translateY(-30px)';
+          t.style.opacity   = '0';
+        });
+        setTimeout(() => t.remove(), 550);
+      }
+    });
+  </script>
+</body>
+</html>
