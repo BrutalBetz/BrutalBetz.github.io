@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌎 Betz Family World Tour</title>
+  <script src="https://unpkg.com/globe.gl@2.27.0/dist/globe.gl.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: #0d0a1a;
+      background-image:
+        repeating-linear-gradient(90deg, rgba(204,0,255,0.035) 0px, rgba(204,0,255,0.035) 1px, transparent 1px, transparent 50px),
+        repeating-linear-gradient(0deg, rgba(204,0,255,0.035) 0px, rgba(204,0,255,0.035) 1px, transparent 1px, transparent 50px);
+      font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
+      color: #f0e8ff;
+      min-height: 100vh;
+    }
+
+    a { color: #ff88dd; font-weight: bold; text-decoration: underline; }
+    a:hover { color: #ffccff; }
+
+    .back-home {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      background: rgba(0,0,0,0.85);
+      color: #ffdd00;
+      padding: 6px 12px;
+      text-decoration: none;
+      font-family: 'Comic Sans MS', cursive;
+      border: 2px solid #ffdd00;
+      z-index: 9999;
+      font-size: 13px;
+      font-weight: bold;
+    }
+    .back-home:hover { color: #ffffff; border-color: #ffffff; }
+
+    marquee {
+      background: linear-gradient(90deg, #550099, #cc00ff, #ff5500, #cc00ff, #550099);
+      color: #ffdd00;
+      font-weight: bold;
+      font-size: 13px;
+      padding: 5px 0;
+      border-bottom: 2px solid #cc00ff;
+    }
+
+    /* ── HEADER ── */
+    .page-header {
+      background: linear-gradient(180deg, #1a0033, #0d0a1a);
+      border-bottom: 3px solid #cc00ff;
+      padding: 20px 20px 14px;
+      text-align: center;
+    }
+
+    .page-title {
+      font-family: Impact, 'Arial Black', sans-serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #4400aa, #cc00ff, #ff5500);
+      color: #ffdd00;
+      display: inline-block;
+      padding: 6px 24px 6px 18px;
+    }
+
+    .page-subtitle {
+      font-size: 0.82rem;
+      color: #9988bb;
+      margin-top: 8px;
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      background: rgba(0,0,0,0.4);
+      border-bottom: 2px solid rgba(204,0,255,0.25);
+      padding: 12px 20px;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: Impact, 'Arial Black', sans-serif;
+      font-size: 1.8rem;
+      color: #cc00ff;
+      letter-spacing: 2px;
+      display: block;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.68rem;
+      color: #9988bb;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* ── GLOBE SECTION ── */
+    .globe-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0;
+      position: relative;
+    }
+
+    #globe-container {
+      width: 100%;
+      height: 65vh;
+      min-height: 420px;
+      cursor: grab;
+    }
+    #globe-container:active { cursor: grabbing; }
+
+    .globe-hint {
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      color: #6655aa;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    /* ── INFO PANEL ── */
+    .info-panel {
+      background: rgba(22, 16, 42, 0.97);
+      border: 2px solid #cc00ff;
+      padding: 16px 20px;
+      margin: 0 auto;
+      max-width: 680px;
+      width: calc(100% - 32px);
+      position: relative;
+      top: -2px;
+      min-height: 90px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .info-emoji {
+      font-size: 2.4rem;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .info-text { flex: 1; }
+
+    .info-name {
+      font-family: Impact, 'Arial Black', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+      color: #ffdd00;
+      text-transform: uppercase;
+    }
+
+    .info-year {
+      font-size: 0.75rem;
+      color: #cc00ff;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .info-desc {
+      font-size: 0.82rem;
+      color: #c4b8e0;
+      line-height: 1.5;
+    }
+
+    .info-placeholder {
+      font-size: 0.88rem;
+      color: #6655aa;
+      margin: auto;
+      text-align: center;
+      width: 100%;
+    }
+
+    /* ── DESTINATION CARDS ── */
+    .destinations-section {
+      padding: 32px 20px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: Impact, 'Arial Black', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #4400aa, #cc00ff, #ff5500);
+      color: #ffdd00;
+      padding: 4px 16px 4px 12px;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+
+    .dest-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px;
+    }
+
+    .dest-card {
+      background: rgba(22,16,42,0.85);
+      border: 2px solid rgba(204,0,255,0.3);
+      padding: 12px 14px;
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+
+    .dest-card:hover {
+      border-color: #cc00ff;
+      transform: translateY(-2px);
+    }
+
+    .dest-card.active {
+      border-color: #ffdd00;
+      background: rgba(204,0,255,0.12);
+    }
+
+    .dest-card-emoji { font-size: 1.6rem; line-height: 1; display: block; margin-bottom: 6px; }
+    .dest-card-name { font-family: Impact, 'Arial Black', sans-serif; font-size: 0.82rem; letter-spacing: 1px; color: #ffdd00; text-transform: uppercase; }
+    .dest-card-year { font-size: 0.7rem; color: #cc00ff; letter-spacing: 1px; }
+    .dest-card-desc { font-size: 0.72rem; color: #9988bb; margin-top: 4px; line-height: 1.4; }
+
+    /* ── FOOTER ── */
+    .footer {
+      text-align: center;
+      font-size: 0.78rem;
+      color: #6655aa;
+      padding: 20px;
+      border-top: 2px solid rgba(255,85,0,0.4);
+      margin-top: 20px;
+    }
+
+    @media (max-width: 600px) {
+      #globe-container { height: 50vh; }
+      .stats-bar { gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <a class="back-home" href="index.html">← Home</a>
+
+  <marquee scrollamount="4">🌎 The Betz Family World Tour!! 🛫 Every adventure starts with little feet!! 🌍 Josie & Emery's Greatest Hits!! 🗺️ Spin the globe!! 🌏 More stamps in the passport every year!! ✈️🌎</marquee>
+
+  <div class="page-header">
+    <div class="page-title">🌎 Betz Family World Tour 🌎</div>
+    <p class="page-subtitle">every place we've been together · spin the globe · click a pin</p>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-item">
+      <span class="stat-num" id="stat-destinations">—</span>
+      <span class="stat-label">Destinations</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num" id="stat-states">—</span>
+      <span class="stat-label">States</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num" id="stat-years">6</span>
+      <span class="stat-label">Years of Adventure</span>
+    </div>
+  </div>
+
+  <div class="globe-section">
+    <div id="globe-container"></div>
+    <div class="globe-hint">🖱️ drag to rotate · scroll to zoom · click a pin for details</div>
+  </div>
+
+  <div class="info-panel" id="info-panel">
+    <p class="info-placeholder">✨ Click any pin on the globe to see where we went! ✨</p>
+  </div>
+
+  <div class="destinations-section">
+    <div class="section-title">📍 All Destinations</div>
+    <div class="dest-grid" id="dest-grid"></div>
+  </div>
+
+  <div class="footer">
+    🌎 Betz Family World Tour · adventure awaits!! · more pins coming every year 🛫
+  </div>
+
+  <script>
+    // ── TRAVEL DATA ──────────────────────────────────────────
+    // Add or edit destinations here!
+    const DESTINATIONS = [
+      {
+        name: 'Los Angeles, CA',
+        lat: 34.0522,
+        lng: -118.2437,
+        year: 2025,
+        emoji: '🎬',
+        color: '#ff44cc',
+        desc: 'Josie turned 6, Emery turned 3! We hit LA, saw some epic waterfalls, and visited GG.'
+      },
+      // ── ADD MORE DESTINATIONS BELOW ──
+      // {
+      //   name: 'Your City, State',
+      //   lat: 00.0000,
+      //   lng: -00.0000,
+      //   year: 2024,
+      //   emoji: '🚛',
+      //   color: '#ff8800',
+      //   desc: 'Description of the trip!'
+      // },
+    ];
+
+    // ── STATS ────────────────────────────────────────────────
+    const uniqueStates = new Set(DESTINATIONS.map(d => d.name.split(', ')[1] || d.name));
+    document.getElementById('stat-destinations').textContent = DESTINATIONS.length;
+    document.getElementById('stat-states').textContent = uniqueStates.size;
+
+    // ── BUILD DESTINATION CARDS ──────────────────────────────
+    const grid = document.getElementById('dest-grid');
+    DESTINATIONS.forEach((d, i) => {
+      const card = document.createElement('div');
+      card.className = 'dest-card';
+      card.id = 'card-' + i;
+      card.innerHTML = `
+        <span class="dest-card-emoji">${d.emoji}</span>
+        <div class="dest-card-name">${d.name}</div>
+        <div class="dest-card-year">📅 ${d.year}</div>
+        <div class="dest-card-desc">${d.desc}</div>
+      `;
+      card.addEventListener('click', () => flyTo(d, i));
+      grid.appendChild(card);
+    });
+
+    // ── INFO PANEL ───────────────────────────────────────────
+    function showInfo(d, idx) {
+      const panel = document.getElementById('info-panel');
+      panel.innerHTML = `
+        <div class="info-emoji">${d.emoji}</div>
+        <div class="info-text">
+          <div class="info-year">📅 ${d.year}</div>
+          <div class="info-name">${d.name}</div>
+          <div class="info-desc">${d.desc}</div>
+        </div>
+      `;
+      document.querySelectorAll('.dest-card').forEach(c => c.classList.remove('active'));
+      const card = document.getElementById('card-' + idx);
+      if (card) { card.classList.add('active'); card.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
+    }
+
+    // ── GLOBE ─────────────────────────────────────────────────
+    const container = document.getElementById('globe-container');
+
+    const globe = Globe({ animateIn: true })
+      .width(container.clientWidth)
+      .height(container.clientHeight)
+      .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-night.jpg')
+      .bumpImageUrl('https://unpkg.com/three-globe/example/img/earth-topology.png')
+      .backgroundImageUrl('https://unpkg.com/three-globe/example/img/night-sky.png')
+      .showAtmosphere(true)
+      .atmosphereColor('#cc00ff')
+      .atmosphereAltitude(0.18)
+      // Points (glowing dots)
+      .pointsData(DESTINATIONS)
+      .pointLat('lat')
+      .pointLng('lng')
+      .pointColor(d => d.color || '#cc00ff')
+      .pointAltitude(0.04)
+      .pointRadius(0.6)
+      .pointResolution(16)
+      .pointLabel(d => `
+        <div style="
+          background:rgba(13,10,26,0.92);
+          border:2px solid ${d.color || '#cc00ff'};
+          padding:6px 12px;
+          font-family:Impact,sans-serif;
+          letter-spacing:2px;
+          color:#ffdd00;
+          font-size:13px;
+          text-transform:uppercase;
+          pointer-events:none;
+        ">${d.emoji} ${d.name} · ${d.year}</div>
+      `)
+      .onPointClick((d, _ev, { x, y, z }) => {
+        const idx = DESTINATIONS.findIndex(dest => dest.name === d.name);
+        showInfo(d, idx);
+        globe.pointOfView({ lat: d.lat, lng: d.lng, altitude: 1.8 }, 800);
+      })
+      (container);
+
+    // Auto-rotate
+    globe.controls().autoRotate = true;
+    globe.controls().autoRotateSpeed = 0.6;
+    globe.controls().enableDamping = true;
+
+    globe.controls().addEventListener('start', () => {
+      globe.controls().autoRotate = false;
+    });
+
+    // Start focused on the US
+    globe.pointOfView({ lat: 39, lng: -98, altitude: 2.2 }, 0);
+
+    // Resize handling
+    window.addEventListener('resize', () => {
+      globe.width(container.clientWidth).height(container.clientHeight);
+    });
+
+    // ── FLY TO LOCATION ───────────────────────────────────────
+    function flyTo(d, idx) {
+      showInfo(d, idx);
+      globe.controls().autoRotate = false;
+      globe.pointOfView({ lat: d.lat, lng: d.lng, altitude: 1.8 }, 900);
+    }
+  </script>
+</body>
+</html>
