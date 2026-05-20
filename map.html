@@ -119,6 +119,29 @@
     }
     #globe-container:active { cursor: grabbing; }
 
+    .globe-legend {
+      display: flex;
+      justify-content: center;
+      gap: 1.4rem;
+      padding: 8px 20px;
+      background: rgba(0,0,0,0.3);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      flex-wrap: wrap;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      color: #9988bb;
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
     .globe-hint {
       position: absolute;
       bottom: 14px;
@@ -265,12 +288,18 @@
     </div>
     <div class="stat-item">
       <span class="stat-num" id="stat-states">—</span>
-      <span class="stat-label">States</span>
+      <span class="stat-label">Countries</span>
     </div>
     <div class="stat-item">
       <span class="stat-num" id="stat-years">6</span>
       <span class="stat-label">Years of Adventure</span>
     </div>
+  </div>
+
+  <div class="globe-legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#ffdd00;box-shadow:0 0 6px #ffdd00;"></div> Born Here</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#ff44cc;box-shadow:0 0 6px #ff44cc;"></div> Aarika &amp; Jason</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#cc00ff;box-shadow:0 0 6px #cc00ff;"></div> Family Trip</div>
   </div>
 
   <div class="globe-section">
@@ -293,33 +322,109 @@
 
   <script>
     // ── TRAVEL DATA ──────────────────────────────────────────
-    // Add or edit destinations here!
+    // color key:
+    //   #ffdd00  = birth location  ⭐
+    //   #ff44cc  = Aarika & Jason travel  ✈️
+    //   #cc00ff  = family / kids adventure  🎬
     const DESTINATIONS = [
+
+      // ── BIRTHPLACES ──────────────────────────────────────
+      {
+        name: 'Lebanon, OR',
+        lat: 44.5368,
+        lng: -122.9074,
+        year: null,
+        emoji: '⭐',
+        color: '#ffdd00',
+        category: 'Born Here',
+        desc: "Where Dad (Jason) was born and grew up 💛"
+      },
       {
         name: 'Los Angeles, CA',
         lat: 34.0522,
         lng: -118.2437,
+        year: null,
+        emoji: '⭐',
+        color: '#ffdd00',
+        category: 'Born Here',
+        desc: "Where Mom (Aarika) was born — and where Josie made her big debut! 💖🦄"
+      },
+      {
+        name: 'Portland, OR',
+        lat: 45.5152,
+        lng: -122.6784,
+        year: 2022,
+        emoji: '⭐',
+        color: '#ffdd00',
+        category: 'Born Here',
+        desc: "Where Emery entered the world and immediately looked for monster trucks 🚛💥"
+      },
+
+      // ── AARIKA & JASON TRAVEL ────────────────────────────
+      {
+        name: 'London, England',
+        lat: 51.5074,
+        lng: -0.1278,
+        year: null,
+        emoji: '✈️',
+        color: '#ff44cc',
+        category: 'Aarika & Jason',
+        desc: "Aarika & Jason in London! Big Ben, the Tube, and probably a lot of rain ☂️🇬🇧"
+      },
+      {
+        name: 'Ghent, Belgium',
+        lat: 51.0543,
+        lng: 3.7174,
+        year: null,
+        emoji: '✈️',
+        color: '#ff44cc',
+        category: 'Aarika & Jason',
+        desc: "Aarika & Jason in Ghent — canals, medieval architecture, and amazing beer 🇧🇪✨"
+      },
+      {
+        name: 'Barcelona, Spain',
+        lat: 41.3851,
+        lng: 2.1734,
+        year: null,
+        emoji: '✈️',
+        color: '#ff44cc',
+        category: 'Aarika & Jason',
+        desc: "Aarika & Jason in Barcelona — Gaudí, tapas, and the Mediterranean coast 🇪🇸🌊"
+      },
+      {
+        name: 'Copenhagen, Denmark',
+        lat: 55.6761,
+        lng: 12.5683,
+        year: null,
+        emoji: '✈️',
+        color: '#ff44cc',
+        category: 'Aarika & Jason',
+        desc: "Aarika & Jason in Denmark — land of Vikings, bikes, and hygge 🇩🇰🚲"
+      },
+
+      // ── FAMILY ADVENTURES ────────────────────────────────
+      {
+        name: 'Los Angeles, CA (2025)',
+        lat: 34.1200,
+        lng: -118.3500,
         year: 2025,
         emoji: '🎬',
-        color: '#ff44cc',
-        desc: 'Josie turned 6, Emery turned 3! We hit LA, saw some epic waterfalls, and visited GG.'
+        color: '#cc00ff',
+        category: 'Family Trip',
+        desc: "Josie turned 6, Emery turned 4! LA trip, saw epic waterfalls, and visited GG 🌟"
       },
-      // ── ADD MORE DESTINATIONS BELOW ──
-      // {
-      //   name: 'Your City, State',
-      //   lat: 00.0000,
-      //   lng: -00.0000,
-      //   year: 2024,
-      //   emoji: '🚛',
-      //   color: '#ff8800',
-      //   desc: 'Description of the trip!'
-      // },
     ];
 
     // ── STATS ────────────────────────────────────────────────
-    const uniqueStates = new Set(DESTINATIONS.map(d => d.name.split(', ')[1] || d.name));
+    const COUNTRIES = {
+      'Lebanon, OR': 'USA', 'Los Angeles, CA': 'USA', 'Portland, OR': 'USA',
+      'Los Angeles, CA (2025)': 'USA',
+      'London, England': 'UK', 'Ghent, Belgium': 'Belgium',
+      'Barcelona, Spain': 'Spain', 'Copenhagen, Denmark': 'Denmark'
+    };
+    const uniqueCountries = new Set(DESTINATIONS.map(d => COUNTRIES[d.name] || 'USA'));
     document.getElementById('stat-destinations').textContent = DESTINATIONS.length;
-    document.getElementById('stat-states').textContent = uniqueStates.size;
+    document.getElementById('stat-states').textContent = uniqueCountries.size;
 
     // ── BUILD DESTINATION CARDS ──────────────────────────────
     const grid = document.getElementById('dest-grid');
@@ -402,8 +507,8 @@
       globe.controls().autoRotate = false;
     });
 
-    // Start focused on the US
-    globe.pointOfView({ lat: 39, lng: -98, altitude: 2.2 }, 0);
+    // Start with a view that shows both the US and Europe
+    globe.pointOfView({ lat: 45, lng: -30, altitude: 2.5 }, 0);
 
     // Resize handling
     window.addEventListener('resize', () => {
