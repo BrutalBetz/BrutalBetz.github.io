@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="kids.css?v=1">
+  <link rel="stylesheet" href="kids.css?v=2">
   <script src="https://unpkg.com/globe.gl@2.27.0/dist/globe.gl.min.js"></script>
   <style>
     .wrap { max-width: 1000px; }
@@ -329,7 +329,17 @@
         emoji: '🎬',
         color: '#cc00ff',
         category: 'Family Trip',
-        desc: "Josie turned 6, Emery turned 4! LA trip, saw epic waterfalls, and visited GG 🌟"
+        desc: "Josie turned 6, Emery turned 4! LA trip and epic waterfalls 🌟"
+      },
+      {
+        name: 'Stockholm, Sweden',
+        lat: 59.3293,
+        lng: 18.0686,
+        year: 2026,
+        emoji: '🇸🇪',
+        color: '#cc00ff',
+        category: 'Family Trip',
+        desc: "Our first international family trip! Josie and Emery's first stamps in the passport ✈️🇸🇪"
       },
     ];
 
@@ -340,7 +350,8 @@
       'Lebanon, OR': 'USA', 'Los Angeles, CA': 'USA', 'Portland, OR': 'USA',
       'Los Angeles, CA (2025)': 'USA',
       'London, England': 'UK', 'Ghent, Belgium': 'Belgium',
-      'Barcelona, Spain': 'Spain', 'Copenhagen, Denmark': 'Denmark'
+      'Barcelona, Spain': 'Spain', 'Copenhagen, Denmark': 'Denmark',
+      'Stockholm, Sweden': 'Sweden'
     };
     const uniqueCountries = new Set(DESTINATIONS.map(d => COUNTRIES[d.name] || 'USA'));
     document.getElementById('stat-destinations').textContent = DESTINATIONS.length;
